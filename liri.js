@@ -25,38 +25,43 @@ let bandsInTown = ("keys.bandsintown");
 let cmd = process.argv[2];
 let secondcmd = process.argv[3];
 
+
+var songData = [
+
+    "Song Title: " + keyTrack.name,
+    "Artist(s): " + keyTrack.artists[0].name,
+    "Album Name: " + keyTrack.album.name,
+    "Spotify URL: " + keyTrack.external_urls.spotify
+].join("\n")
+
+    
+
+
 switch (cmd) {
-    case "movie-this":
+    case "spotify-this":
+    spotify.search({
+        type: "track",
+        query: cmd
+    },
+    function(err, data){
+        if (err) {
+            return console.log(`Error Occurred:` + err);
+            var songData = [
 
-
-        if (secondcmd === undefined) {
-            secondcmd = "Mr. Nobody";
+            "Song Title: The Sign",
+            "Artist(s): Ace of Base",
+            "Album Name: Happy Nation",
+            "Spotify URL: https://open.spotify.com/album/0nQFgMfnmWrcWDOQqIgJL7"
+        ].join("\n")
         }
-        request("http://www.omdbapi.com/?t=${argument}&y=&plot=short&apikey=trilogy" , function (error, response, body) {
-            let movieResult = JSON.parse(body);
+        const trackSpotify = response.tracks.items[0]
+        const artist = [];
 
-            console.log("Movie Title:" + result.Title);
-            console.log("Released:" + result.Released);
-            console.log("Rating:" + result.imbdRating);
-            console.log("Rotten Tomatoes Rating:" + result.Ratings[1]);
-            console.log("country:" + result.Country);
-            console.log("Language:" + result.Language)
-            console.log("Plot:" + result.Plot);
-            console.log("Actors:" + result.Actors);
+    }
+    )
+
 
         
-        });
-
-        break;
-    case "spotify-this":
-            if (secondcmd === undefined) {
-                secondcmd = "The Sign";
-            }
-            spotify.search({
-                type: "track", query: cmd, limit: 1 })
-                .then(function (response) {
-                    var
-                }
             
             
 
